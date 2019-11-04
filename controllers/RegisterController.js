@@ -9,7 +9,7 @@ const Register = require("../models/Register")
  *      datetime: Date
  * }
  */
-const insertRegister = (req, res)=>{
+const insert = (req, res)=>{
     /**
      * Para ver el funcionamiento de req.body hacer:
      * console.log(req.body);
@@ -40,7 +40,7 @@ const insertRegister = (req, res)=>{
  *      datetime: Date
  * }
  */
-const updateRegister = (req, res)=>{
+const update = (req, res)=>{
     let register = req.body
     
     //console.log(register._id);
@@ -66,7 +66,7 @@ const updateRegister = (req, res)=>{
 
 }
 
-const deleteRegister = (req, res)=>{
+const deleteById = (req, res)=>{
     let register = req.body;
 
     if(!register._id){
@@ -91,7 +91,7 @@ const deleteRegister = (req, res)=>{
 /**
  * METHOD = GET
  */
-const getAllRegisters = (req, res)=>{
+const getAll = (req, res)=>{
     Register.find((err, registers)=>{
         if(err) return res.status(500).json({
             message: "Something happend trying to get the Register",
@@ -111,7 +111,7 @@ const getAllRegisters = (req, res)=>{
  * METHOD = GET
  * Params -> id
  */
-const getRegisterById = (req, res)=>{
+const getOneById = (req, res)=>{
     let id = req.params.id; 
 
     Register.findById(id, (err, register)=>{
@@ -130,9 +130,9 @@ const getRegisterById = (req, res)=>{
 }
 
 module.exports = {
-    insertRegister,
-    updateRegister,
-    deleteRegister,
-    getAllRegisters,
-    getRegisterById,
+    insert,
+    update,
+    deleteById,
+    getAll,
+    getOneById,
 }
